@@ -42,7 +42,7 @@ const Login = () => {
             const token = response?.data?.token;
             const roles = response?.data?.role
             console.log(username)
-            setAuth({username, password, roles: 2, token})
+            setAuth({username, password, roles: 1, token})
             setUser('')
             setPassword('')
             navigate(from, {replace: true})
