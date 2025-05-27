@@ -7,6 +7,8 @@ import Missing from './components/Missing'
 import RequireAuth from './components/RequireAuth'
 import NotHome from './components/NotHome'
 import WorkerOnly from './components/WorkerOnly'
+import VacationsDir from './components/VacationsDirector'
+import VacationForm from './components/VacationsForm'
 
 const ROLES = {
   Pracownik: 1,
@@ -26,15 +28,22 @@ function App() {
 
 
         {/* private*/}
-        <Route element={<RequireAuth allowedRoles={[ROLES.Pracownik, ROLES.Manager]} />}>
+        <Route element={<RequireAuth allowedRoles={[ROLES.Pracownik, ROLES.Manager,ROLES.AllDirector,ROLES.Director]} />}>
           <Route path='home' element={<Home />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={[ROLES.Manager]} />}>
+        <Route element={<RequireAuth allowedRoles={[ROLES.Manager,ROLES.Director, ROLES.AllDirector]} />}>
           <Route path='nothome' element={<NotHome />} />
         </Route>
         <Route element={<RequireAuth allowedRoles={[ROLES.Pracownik]} />}>
           <Route path='workeronly' element={<WorkerOnly />} />
         </Route>
+        <Route element={<RequireAuth allowedRoles={[ROLES.AllDirector,ROLES.Director]} />} >
+          <Route path='acceptvacations' element={<VacationsDir />} />
+        </Route>
+        <Route element={<RequireAuth allowedRoles={[ROLES.AllDirector,ROLES.Director]} />} >
+          <Route path='vacationform' element={<VacationForm />} />
+        </Route>
+        
 
         {/* catch all */}
         <Route path='*' element={<Missing />} />

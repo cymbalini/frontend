@@ -41,8 +41,9 @@ const Login = () => {
             console.log(JSON.stringify(response?.data))
             const token = response?.data?.token;
             const roles = response?.data?.role
+            const id = response?.data?.id
             console.log(username)
-            setAuth({username, password, roles: 1, token})
+            setAuth({id,username, password, roles, token})
             setUser('')
             setPassword('')
             navigate(from, {replace: true})
